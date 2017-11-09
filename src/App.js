@@ -1,23 +1,24 @@
+// @flow
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Home, Meals } from 'components';
+import { Wrap, Meals } from 'containers';
 import store from './store';
 import './App.css';
 
-class App extends Component {
+type Props = {};
+
+class App extends Component<Props> {
   render() {
     return (
-      <div>
-        <Provider store={store}>
-          <Router>
-            <main>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/meals" component={Meals} />
-            </main>
-          </Router>
-        </Provider>
-      </div>
+      <Provider store={store}>
+        <Router>
+          <div>
+            <Route path="/" component={Wrap} />
+            <Route exact path="/meals" component={Meals}/>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

@@ -1,32 +1,39 @@
 // @flow
-import { List, Map } from 'immutable';
+import { MealAction, Meal, MealCollection, MealId} from 'types/Meal';
 
-type mealAction = {
-  type: string,
-  mealId?: string
-}
-
-type Meal = {
-  _id: string,
-  name: string,
-  ingredients: Array<string>
-};
-
-const action = name => `${process.env.app}/meals/${name}`;
+const action = (name: string) => `zikher/auth/${name}`;
 
 const ADD_MEAL = action('ADD_MEAL');
 const EDIT_MEAL = action('EDIT_MEAL');
 const REMOVE_MEAL = action('REMOVE_MEAL');
+const ADD_MEAL_SUCCESS = action('ADD_MEAL_SUCCESS');
+const EDIT_MEAL_SUCCESS = action('EDIT_MEAL_SUCCESS');
+const REMOVE_MEAL_SUCCESS = action('REMOVE_MEAL_SUCCESS');
 
-const addMeal = (meal: Meal) => ({ type: ADD_MEAL, meal });
-const removeMeal = mealId => ({ type: REMOVE_MEAL, mealId });
-const editMeal = (mealId: string, meal: Meal)  => ({ type: ADD_MEAL, meal, mealId });
+export const addMeal: MealAction = (meal: Meal) => ({ type: ADD_MEAL, meal });
+export const removeMeal: MealAction = (mealId: MealId) => ({ type: REMOVE_MEAL, mealId });
+export const editMeal: MealAction  = (mealId: MealId, meal: Meal)  => ({ type: EDIT_MEAL, meal, mealId });
 
-const initialState: List<Meal> = List([]);
-const meals = (state: Array<Object> = initialState, action: mealAction) => {
+const initialState: MealCollection = [
+  {
+    id: '2345ok2hj3n5ok2hj3o',
+    name: 'Food food food'
+  },
+  {
+    id: '2345ok2hj3n5ok2hj3o',
+    name: 'qdsfgdfg1 food food',
+    ey: 'sdfsd'
+  },
+];
+
+const meals = (state: MealCollection = initialState, action: MealAction) => {
   switch(action.type){
-    case ADD_MEAL:
-      return state.push(action.meal);
+    case ADD_MEAL_SUCCESS:
+      return state.push(action);
+    case EDIT_MEAL_SUCCESS:
+      return state.push(action);
+    case REMOVE_MEAL_SUCCESS:
+      return state.push(action);
     default:
       return state;
   }

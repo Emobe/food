@@ -1,6 +1,12 @@
+// @flow
 import React, { Component } from 'react';
 
-export class Home extends Component {
+type Props = {
+};
+
+export class Home extends Component<Props> {
+  componentDidMount(){
+  }
   render(){
     return(
       <div className="home">

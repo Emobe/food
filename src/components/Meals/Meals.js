@@ -1,19 +1,27 @@
+// @flow
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Meal, MealsContainerProps, MealList} from 'types/Meal';
 
-export class Meals extends Component {
-  addmeal(meal) {}
+export class Meals extends Component<MealsContainerProps> {
+  addmeal(meal: Meal) {}
 
-  removeMeal(mealId) {}
+  removeMeal(mealId: MealList) {}
 
-  editMeal(mealId, meal) {}
+  editMeal(meal: Meal) {}
 
   render() {
-    return <div className="meals">Meals</div>;
+    const { meals } = this.props;
+    return (
+      <div className="meals">
+      meals
+        {meals.map(m => (
+          <div>
+          {m.name}
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
-const mapDispatchToProps = () => {};
-const mapStateToProps = state => {};
-
-export default connect(mapDispatchToProps, mapStateToProps)(Meals);
+export default Meals;

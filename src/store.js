@@ -1,7 +1,6 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
+import { default as reducer } from 'ducks';
 
-const initialState = {};
-
-const store = createStore(initialState);
+const store = createStore(reducer);
 
 export default store;

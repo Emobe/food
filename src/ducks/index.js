@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
+import meals from './meals';
 
 const reducers = combineReducers({
+  meals
 });
 
-xport default reducers;
+export default reducers;
