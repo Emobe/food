@@ -1,6 +1,11 @@
-import { createStore } from 'redux';
-import { default as reducer } from 'ducks';
+import { createStore, compose } from 'redux';
+import reducer from 'reducers';
+import DevTools from 'containers/DevTools';
 
-const store = createStore(reducer);
+const enhancer = compose(
+  DevTools.instrument()
+);
+
+const store = createStore(reducer, enhancer);
 
 export default store;

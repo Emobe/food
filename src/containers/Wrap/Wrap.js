@@ -1,7 +1,5 @@
 // @flow
 import React, { Component, type Node } from 'react';
-import { Route } from 'react-router-dom';
-import { Meals } from 'containers';
 
 type Props = {
   children: Node

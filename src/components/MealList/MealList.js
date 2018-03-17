@@ -1,19 +1,26 @@
 // @flow
 import React from 'react';
-import type { MealList
+import { MealCollection } from 'types/Meal';
+import { Meal } from 'components';
 
 type Props = {
-  meals: List<Map<string, string>>,
   add: Function,
   edit: Function,
-  remove: Function
+  remove: Function,
+  meals: MealCollection
 };
 
 const MealList = ({ meals, add, remove, edit }: Props) => (
   <div className="meal-list">
-    Meal list
+  {Object.keys(meals).map(meal => (
+    <Meal meal={meals[meal]} remove={remove} edit={edit} key={meals[meal]._id} />
+  ))}
   </div>
 );
 
+
+MealList.defaultProps = {
+  meals: {}
+};
 
 export default MealList;

@@ -1,16 +1,15 @@
-import type { List } from 'immutable';
-
 export type MealId = string;
 
-export type Meal = {|
-  _id: MealId,
-  name: string
-|};
+export type Meal = {
+  +_id: MealId,
+  +name: string,
+  +ingredients: Array<string>
+};
 
-export type MealCollection = Array<Meal>;
+export type MealCollection = { [key: string]: Meal}
 
 export type MealState = {
-  meals: MealCollection
+  +meals: MealCollection
 };
 
 export type MealsContainerProps = {
