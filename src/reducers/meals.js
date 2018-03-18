@@ -28,4 +28,3 @@ const meals = (state: MealCollection = initialState, action: MealAction): MealCo
 };
 
 export default meals;
-
