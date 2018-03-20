@@ -10,14 +10,23 @@ type Props = {
   meals: MealCollection
 };
 
+const style={
+  display: 'flex',
+  justifyContet: 'space-between'
+};
+
 const MealList = ({ meals, add, remove, edit }: Props) => (
   <div className="meal-list">
-  {Object.keys(meals).map(meal => (
-    <Meal meal={meals[meal]} remove={remove} edit={edit} key={meals[meal]._id} />
-  ))}
+    {Object.keys(meals).map(meal => (
+      <Meal
+        meal={meals[meal]}
+        remove={remove}
+        edit={edit}
+        key={meals[meal]._id}
+      />
+    ))}
   </div>
 );
-
 
 MealList.defaultProps = {
   meals: {}

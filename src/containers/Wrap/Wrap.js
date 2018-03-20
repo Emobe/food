@@ -1,5 +1,6 @@
 // @flow
 import React, { Component, type Node } from 'react';
+import { Meals } from 'containers';
 import AppBar from 'material-ui/AppBar';
 import {
   MuiThemeProvider,
@@ -11,7 +12,8 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
-import MenuIcon from 'material-ui-icons/Menu';
+import { LocalDining, Schedule, Menu } from 'material-ui-icons';
+import { Link, Route } from 'react-router-dom';
 
 type Props = {
   children: Node
@@ -34,14 +36,26 @@ const styles = theme => ({
     position: 'relative',
     width: 240
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  main: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0,
+  },
+  root: {
+      flexGrow: 1,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+  }
 });
 
 class Wrap extends Component<Props> {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
             <IconButton
@@ -49,7 +63,7 @@ class Wrap extends Component<Props> {
               aria-label="Menu"
               className={classes.navIconHide}
             >
-              <MenuIcon />
+              <Menu />
             </IconButton>
             <Typography variant="title">Meal Manager</Typography>
           </Toolbar>
@@ -62,14 +76,25 @@ class Wrap extends Component<Props> {
         >
           <div className={classes.toolbar} />
           <List component="nav">
-            <ListItem button component="a" href="/meals">
+            <ListItem button component={Link} to="/meals">
+              <ListItemIcon>
+                <LocalDining />
+              </ListItemIcon>
               <ListItemText primary="Meals" />
             </ListItem>
             <ListItem button component="a" href="#simple-list">
+              <ListItemIcon>
+                <Schedule />
+              </ListItemIcon>
               <ListItemText primary="Schedule" />
             </ListItem>
           </List>
         </Drawer>
+        <main className={classes.main}>
+          <div className={classes.toolbar} />
+          <Route exact path="/meals" component={Meals} />
+          sdfsd
+        </main>
       </div>
     );
   }

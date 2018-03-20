@@ -29,7 +29,6 @@ class App extends Component<Props> {
             <CssBaseline>
               <DevTools />
               <Route path="/" component={Wrap} />
-              <Route exact path="/meals" component={Meals}/>
             </CssBaseline>
           </MuiThemeProvider>
         </Router>
